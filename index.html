@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goldenice International | Premium Tech & Creative Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F4E4BC;
+            --gold-dark: #B8860B;
+            --ice-blue: #E0F7FA;
+            --ice-dark: #006064;
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray-100: #f8f9fa;
+            --gray-800: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-primary);
+            border-radius: 5px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 5px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light), var(--gold-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--gold-primary);
+            -webkit-text-fill-color: var(--gold-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 5%;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 96, 100, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold-primary);
+            border-radius: 50px;
+            color: var(--gold-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gold-light) 50%, var(--gold-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            color: var(--black);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--gold-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold-primary);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gold-line {
+            width: 80px;
+            height: 3px;
+            background: var(--gold-primary);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(180deg, var(--black) 0%, var(--gray-800) 50%, var(--black) 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--gold-primary);
+            color: var(--black);
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .service-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .service-list li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-list li i {
+            color: var(--gold-primary);
+            font-size: 0.8rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--black);
+            position: relative;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 96, 100, 0.1));
+            border-radius: 30px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(212, 175, 55, 0.05) 10px,
+                rgba(212, 175, 55, 0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(-50%, -50%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: linear-gradient(180deg, var(--gray-800) 0%, var(--black) 100%);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(0, 96, 100, 0.2));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            border-color: var(--gold-primary);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            color: var(--gold-primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .portfolio-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: var(--gold-primary);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-icon {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--black);
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--gold-primary);
+            transform: translateX(10px);
+        }
+
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+        }
+
+        .contact-item div strong {
+            color: var(--white);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item div span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2.5rem;
+            border-radius: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-800);
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gold-primary);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gold-primary);
+            color: var(--black);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 3px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            width: 0%;
+            height: 100%;
+            background: var(--gold-primary);
+            transition: width 0.3s ease;
+            animation: loading 2s ease forwards;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">Goldenice International</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <img src="./Tech.png" width="15%",  height="15%">
+            Goldenice International
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i> Premium Tech & Creative Solutions
+            </div>
+            <h1>Crafting Digital Excellence with Golden Precision</h1>
+            <p>Your one-stop destination for website development, mobile apps, graphic design, social media management, event planning, and creative solutions that transform your vision into reality.</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/2347040856276" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Start Your Project
+                </a>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Our Premium Services</h2>
+            <div class="gold-line"></div>
+            <p>Comprehensive digital and creative solutions tailored to elevate your brand and business</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card" onclick="showServiceDetail('web')">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Website Development</h3>
+                <p>Custom, responsive websites built with modern technologies to establish your digital presence.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> Custom Web Design</li>
+                    <li><i class="fas fa-check"></i> E-commerce Solutions</li>
+                    <li><i class="fas fa-check"></i> CMS Integration</li>
+                    <li><i class="fas fa-check"></i> SEO Optimization</li>
+                </ul>
+            </div>
+
+            <div class="service-card" onclick="showServiceDetail('apps')">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Apps Development</h3>
+                <p>Native and cross-platform mobile applications that deliver exceptional user experiences.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> iOS Development</li>
+                    <li><i class="fas fa-check"></i> Android Development</li>
+                    <li><i class="fas fa-check"></i> Cross-Platform Apps</li>
+                    <li><i class="fas fa-check"></i> App Maintenance</li>
+                </ul>
+            </div>
+
+            <div class="service-card" onclick="showServiceDetail('social')">
+                <div class="service-icon">
+                    <i class="fas fa-hashtag"></i>
+                </div>
+                <h3>Social Media Management</h3>
+                <p>Strategic social media campaigns that build engagement and grow your audience.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> Content Strategy</li>
+                    <li><i class="fas fa-check"></i> Account Management</li>
+                    <li><i class="fas fa-check"></i> Analytics & Reporting</li>
+                    <li><i class="fas fa-check"></i> Paid Advertising</li>
+                </ul>
+            </div>
+
+            <div class="service-card" onclick="showServiceDetail('design')">
+                <div class="service-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>Graphic Design</h3>
+                <p>Stunning visual identities including logos, flyers, and complete rebranding solutions.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> Logo Design</li>
+                    <li><i class="fas fa-check"></i> Brand Identity</li>
+                    <li><i class="fas fa-check"></i> Marketing Materials</li>
+                    <li><i class="fas fa-check"></i> Rebranding</li>
+                </ul>
+            </div>
+
+            <div class="service-card" onclick="showServiceDetail('photo')">
+                <div class="service-icon">
+                    <i class="fas fa-camera-retro"></i>
+                </div>
+                <h3>Picture Editing & Frames</h3>
+                <p>Professional photo editing, retouching, and custom framing services for all occasions.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> Photo Retouching</li>
+                    <li><i class="fas fa-check"></i> Color Correction</li>
+                    <li><i class="fas fa-check"></i> Custom Frames</li>
+                    <li><i class="fas fa-check"></i> Album Design</li>
+                </ul>
+            </div>
+
+            <div class="service-card" onclick="showServiceDetail('events')">
+                <div class="service-icon">
+                    <i class="fas fa-calendar-star"></i>
+                </div>
+                <h3>Event Planning</h3>
+                <p>From corporate events to birthday celebrations, we create memorable experiences.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> Birthday Surprises</li>
+                    <li><i class="fas fa-check"></i> Corporate Events</li>
+                    <li><i class="fas fa-check"></i> Wedding Planning</li>
+                    <li><i class="fas fa-check"></i> Party Coordination</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-visual">
+                <div class="about-image">
+                    <i class="fas fa-gem" style="font-size: 5rem; color: var(--gold-primary); opacity: 0.3;"></i>
+                </div>
+            </div>
+            <div class="about-content">
+                <h2>Why Choose Goldenice International?</h2>
+                <p>At Goldenice International, we blend creativity with technology to deliver exceptional results. Our team of skilled professionals is dedicated to transforming your ideas into reality, whether it's a stunning website, a viral social media campaign, or an unforgettable event.</p>
+                <p>With years of experience and a passion for excellence, we've helped countless businesses and individuals achieve their goals. Our golden standard of service ensures that every project receives the attention and expertise it deserves.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="500">0</span>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="350">0</span>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="50">0</span>
+                        <div class="stat-label">Team Experts</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-header">
+            <h2>Our Work</h2>
+            <div class="gold-line"></div>
+            <p>Explore some of our recent projects and creative endeavors</p>
+        </div>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item" onclick="showPortfolioDetail('web')">
+                <div class="portfolio-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Corporate Websites</h3>
+                    <p>Modern, responsive websites for businesses across industries</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" onclick="showPortfolioDetail('app')">
+                <div class="portfolio-icon">
+                    <i class="fas fa-mobile"></i>
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Mobile Applications</h3>
+                    <p>Feature-rich apps for iOS and Android platforms</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" onclick="showPortfolioDetail('brand')">
+                <div class="portfolio-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Brand Identities</h3>
+                    <p>Complete visual branding and logo designs</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" onclick="showPortfolioDetail('social')">
+                <div class="portfolio-icon">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Social Campaigns</h3>
+                    <p>Viral marketing campaigns and content strategies</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" onclick="showPortfolioDetail('photo')">
+                <div class="portfolio-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Photo Editing</h3>
+                    <p>Professional photo retouching and frame designs</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" onclick="showPortfolioDetail('event')">
+                <div class="portfolio-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Events & Celebrations</h3>
+                    <p>Memorable birthday surprises and corporate events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <div class="gold-line"></div>
+            <p>Ready to start your project? Contact us today for a free consultation</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Create Something Amazing</h3>
+                <p>Whether you need a new website, a mobile app, stunning graphics, or help planning the perfect event, we're here to make it happen. Reach out to us through any of the channels below.</p>
+                
+                <div class="contact-details">
+                    <a href="https://wa.me/2347040856276" target="_blank" class="contact-item" style="text-decoration: none; color: inherit;">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <span>0704 085 6276</span>
+                        </div>
+                    </a>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone</strong>
+                            <span>0706 515 1245</span>
+                        </div>
+                    </div>
+                    
+                    <a href="mailto:goldeniceinternational12@gmail.com" class="contact-item" style="text-decoration: none; color: inherit;">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <span>goldeniceinternational12@gmail.com</span>
+                        </div>
+                    </a>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Working Hours</strong>
+                            <span>Mon - Sat: 8:00 AM - 6:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="website">Website Development</option>
+                            <option value="apps">Apps Development</option>
+                            <option value="social">Social Media Management</option>
+                            <option value="graphic">Graphic Design</option>
+                            <option value="photo">Picture Editing & Frames</option>
+                            <option value="events">Event Planning</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-paper-plane"></i><a href="https://wa.me/2347040856276">Send Message</a>         
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3><i class="fas fa-crown"></i> Goldenice International</h3>
+                <p>Premium tech and creative solutions provider. We transform your digital dreams into golden reality with precision, creativity, and excellence.</p>
+                <div class="social-links">
+                    
+                    <a href="https://wa.me/2347040856276" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Web Development</a></li>
+                    <li><a href="#services">App Development</a></li>
+                    <li><a href="#services">Graphic Design</a></li>
+                    <li><a href="#services">Social Media</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="tel:07065151245">0706 515 1245</a></li>
+                    <li><a href="mailto:goldeniceinternational12@gmail.com">Email Us</a></li>
+                    <li><a href="https://wa.me/2347040856276">WhatsApp</a></li>
+                    <li><a href="https://wa.me/2347040856276" onclick="showToast('FAQ coming soon!')">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Goldenice International. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--gold-primary);"></i> and precision</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Counter animation
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(animateCounters, 20);
+                } else {
+                    counter.innerText = target + '+';
+                }
+            });
+        };
+
+        // Intersection Observer for counters
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Service detail popup
+        function showServiceDetail(service) {
+            const messages = {
+                'web': 'Website Development: We create stunning, responsive websites tailored to your brand. From simple landing pages to complex e-commerce platforms, we deliver excellence.',
+                'apps': 'Apps Development: Native and cross-platform mobile applications built with cutting-edge technology for iOS and Android.',
+                'social': 'Social Media Management: Strategic content creation, scheduling, and analytics to grow your online presence.',
+                'design': 'Graphic Design: Professional logos, flyers, business cards, and complete brand identity packages.',
+                'photo': 'Picture Editing & Frames: Professional photo retouching, color correction, and custom frame designs for all occasions.',
+                'events': 'Event Planning: From intimate birthday surprises to large corporate events, we handle every detail.'
+            };
+            showToast(messages[service] || 'Service details coming soon!');
+        }
+
+        // Portfolio detail popup
+        function showPortfolioDetail(type) {
+            showToast('Portfolio details coming soon! Contact us to see our full portfolio.');
+        }
+
+        // Form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            showToast('Thank you! Your message has been sent. We will contact you shortly.');
+            e.target.reset();
+            
+            // In a real implementation, you would send this data to a server
+            console.log('Form data:', data);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'rgba(10, 10, 10, 0.98)';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '2rem';
+            navLinks.style.gap = '1.5rem';
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.4}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+            }
+        });
+    </script>
+</body>
+</html>
